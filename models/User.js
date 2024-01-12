@@ -7,8 +7,16 @@ const userSchema = new Schema(
         type: String,
         required: true,
         max_length: 30,
-      }
+    },
+    thoughts: [thoughtsSchema],
+    reactions: [reactionsSchema],
+    },   
+    {
+      toJSON: {
+        getters: true,
+      },
     });
+    
     
 const User = model('user', userSchema);
 
