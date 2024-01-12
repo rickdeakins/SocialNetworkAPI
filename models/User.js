@@ -1,23 +1,38 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create USER model
 const userSchema = new Schema(
-    {
-      first: {
-        type: String,
-        required: true,
-        max_length: 30,
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
     },
-    thoughts: [thoughtsSchema],
-    reactions: [reactionsSchema],
-    },   
-    {
-      toJSON: {
-        getters: true,
-      },
-    });
-    
-    
-const User = model('user', userSchema);
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email address']
+    },
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+);
 
+const User = model('User', userSchema);
 module.exports = User;
