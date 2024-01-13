@@ -1,7 +1,12 @@
-const { connect, connection } = require('mongoose');
+const { connect } = require('mongoose');
 
 const connectionString = 'mongodb://localhost:27017/socialDB';
 
-connect(connectionString);
-
-module.exports = connection;
+module.exports = async () => {
+  try {
+    await connect(connectionString);
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+  }
+};
