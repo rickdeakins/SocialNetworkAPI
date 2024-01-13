@@ -17,4 +17,4 @@ router
   .put(editSingleUser)
   .delete(deleteSingleUser);
 
-module.exports = userRouter;
+module.exports = router;

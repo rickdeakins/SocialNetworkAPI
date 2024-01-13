@@ -25,4 +25,4 @@ router.route("/api/thoughts/:thoughtId/reactions")
   .delete(deleteExitingReaction)
 
 
-module.exports = thoughtRouter;
+module.exports = thoughtRoutes;
