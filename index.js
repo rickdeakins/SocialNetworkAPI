@@ -9,8 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
-db.once('open', () => {
+db.then(() => {
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
   });
+}).catch((err) => {
+  console.error('MongoDB connection error:', err);
 });

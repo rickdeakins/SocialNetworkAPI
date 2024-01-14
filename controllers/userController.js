@@ -15,7 +15,7 @@ const userCount = async () => {
 };
 
 module.exports = {
-  async getUsers(req, res) {
+  async getAllUsers(req, res) {
     try {
       const users = await User.find();
       const userObj = { users, userCount: await userCount() };
@@ -74,7 +74,7 @@ module.exports = {
     }
   },
 
-  async deleteUser(req, res) {
+  async deleteSingleUser(req, res) {
     try {
       const user = await User.findOneAndRemove({ _id: req.params.userId });
 
