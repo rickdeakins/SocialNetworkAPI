@@ -18,13 +18,15 @@ module.exports = {
   async getAllUsers(req, res) {
     try {
       const users = await User.find();
+      if (users.length === 0) {
+        return res.status(404).json({ message: 'No users found' });
+      }
       const userObj = { users, userCount: await userCount() };
       return res.json(userObj);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
-    }
-  },
+    }},
 
   async getSingleUser(req, res) {
     try {
@@ -43,7 +45,7 @@ module.exports = {
     }
   },
 
-  async createUser(req, res) {
+  async createNewUser(req, res) {
     try {
       const user = await User.create(req.body);
       res.json(user);

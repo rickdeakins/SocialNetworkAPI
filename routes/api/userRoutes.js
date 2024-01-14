@@ -7,14 +7,19 @@ const {
   deleteSingleUser,
 } = require("../../controllers/userController");
 
-// /api/users
-router.route("/").get(getAllUsers).post(getAllUsers);
+// GET all users
+router.get("/", getAllUsers);
 
-// /api/users/:userId
-router
-  .route("/:userId")
-  .get(getSingleUser)
-  .put(editSingleUser)
-  .delete(deleteSingleUser);
+// POST a new user
+router.post("/", createNewUser);
 
-module.exports = router;
+// GET a single user
+router.get("/:userId", getSingleUser);
+
+// PUT (edit) a single user
+router.put("/:userId", editSingleUser);
+
+// DELETE a single user
+router.delete("/:userId", deleteSingleUser);
+
+module.exports = router;  
