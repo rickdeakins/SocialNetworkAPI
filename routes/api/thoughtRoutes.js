@@ -9,25 +9,26 @@ const {
   getSingleReaction,
   createNewReaction,
   editSingleReaction,
-  deleteExistingReaction
-} = require("../../controllers/ThoughtController");
+  deleteExistingReaction,
+} = require("../../controllers/thoughtController");
 
 // /api/Thoughts
 router.route("/").get(getAllThoughts).post(createNewThought);
 
 // /api/Thoughts/:ThoughtId
 router
-  .route("/:ThoughtId")
+  .route("/:thoughtId")
   .get(getSingleThought)
-  .post(createNewThought)
   .put(editSingleThought)
   .delete(deleteSingleThought);
 
 // /api/Thoughts/:ThoughtId/reactions
-router.route("/api/thoughts/:thoughtId/reactions")
-  .post(createNewReaction)
-  .put(editSingleReaction)
-  .delete(deleteExistingReaction)
+router.route("/api/thoughts/:thoughtId/reactions").post(createNewReaction);
 
+// /api/Thoughts/:ThoughtId/reactions/reactionId
+router
+  .route("/api/thoughts/:thoughtId/reactions/:reactionId")
+  .put(editSingleReaction)
+  .delete(deleteExistingReaction);
 
 module.exports = router;
