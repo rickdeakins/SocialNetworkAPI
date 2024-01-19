@@ -75,7 +75,7 @@ module.exports = {
   // Get all reactions
   async getAllReactions(req, res) {
     try {
-      const reaction = await Reaction.find().populate("users");
+      const reaction = await Reaction.find().populate("Reactions");
       res.json(reaction);
     } catch (err) {
       res.status(500).json(err);
@@ -87,7 +87,7 @@ module.exports = {
     try {
       const reaction = await Reaction.findOne({
         _id: req.params.reactionId,
-      }).populate("users");
+      }).populate("Reactions");
       if (!reaction) {
         return res.status(404).json({ message: "No thought with that ID" });
       }
@@ -98,32 +98,30 @@ module.exports = {
   },
 
   // Create a reaction
-  async createNewReaction(req, res) {
-    try {
-      const reaction = await Reaction.create(req.body);
-      res.json(reaction);
-    } catch (err) {
-      console.log(err);
-      return res.status(500).json(err);
-    }
-  },
-
-  //  // Update a reaction
-  //  async editSingleReaction(req, res) {
+  // async createNewReaction(req, res) {
   //   try {
-  //     const reaction = await Reaction.findOneAndUpdate(
-  //       { _id: req.params.reactionId },
-  //       { $set: req.body },
-  //       { runValidators: true, new: true }
-  //     );
-  //     if (!reaction) {
-  //       return res.status(404).json({ message: 'No reaction with this id!' });
-  //     }
+  //     // const reaction = await Reaction.create(req.body);
+  // const newReaction = await Thought.
   //     res.json(reaction);
   //   } catch (err) {
-  //     res.status(500).json(err);
+  //     console.log(err);
+  //     return res.status(500).json(err);
   //   }
   // },
+
+  async createNewReaction(req, res) {
+    try {
+      const newReaction = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
+      );
+  res.json(newReaction);
+} catch (err) {
+  console.log(err);
+  return res.status(500).json(err);
+}
+},
 
   // Delete a thought
   async deleteExistingReaction(req, res) {

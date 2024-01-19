@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const { Schema, model, Types } = require('mongoose');
 
 const reactionSchema = new Schema(
@@ -24,9 +26,12 @@ const reactionSchema = new Schema(
     {
       toJSON: {
         getters: true
-      }
+      },
+      id:false
+
     }
   );
   
+  //review activity 25 - issue with model
   const Reaction = model('Reaction', reactionSchema);
   module.exports = Reaction;

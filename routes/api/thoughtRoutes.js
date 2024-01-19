@@ -8,27 +8,43 @@ const {
   getAllReactions,
   getSingleReaction,
   createNewReaction,
-  editSingleReaction,
   deleteExistingReaction,
 } = require("../../controllers/thoughtController");
 
-// /api/Thoughts
+//Thoughts
+//GET all Thoughts
+router
+  .route(getAllThoughts);
+
+// Create NEW Thought
 router.route("/").get(getAllThoughts).post(createNewThought);
 
-// /api/Thoughts/:ThoughtId
+// Get/Edit/Delete Single Thought
 router
   .route("/:thoughtId")
   .get(getSingleThought)
   .put(editSingleThought)
   .delete(deleteSingleThought);
 
-// /api/Thoughts/:ThoughtId/reactions
-router.route("/api/thoughts/:thoughtId/reactions").post(createNewReaction);
+//Reactions  
+// Get ALL Reactions
+router
+  .route("/api/thoughts/:thoughtId/")
+  .get(getAllReactions);
 
-// /api/Thoughts/:ThoughtId/reactions/reactionId
+// Create NEW Reaction
+// router.route("/api/thoughts/:thoughtId/reactions")
+//   .post(createNewReaction);  
+
+  router.post("/:thoughtId/reactions", createNewReaction);
+
+// Get/Delete Single Reaction
 router
   .route("/api/thoughts/:thoughtId/reactions/:reactionId")
-  .put(editSingleReaction)
+  .get(getSingleReaction)
   .delete(deleteExistingReaction);
+
+
+
 
 module.exports = router;
