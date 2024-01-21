@@ -114,8 +114,6 @@ module.exports = {
 
   async createNewReaction(req, res) {
     try {
-      const { reactionBody, userName } = req.body;
-
       // Find the Thought document by ID
       const thought = await Thought.findById(req.params.thoughtId);
 
@@ -125,7 +123,7 @@ module.exports = {
       }
 
       // Create a new Reaction document
-      const newReaction = await Reaction.create({ reactionBody, userName });
+      const newReaction = await Reaction.create(req.body);
 
       // Update the reactions field in the Thought document
       thought.reactions.push(newReaction);

@@ -27,7 +27,7 @@ router
 
 //Reactions
 // Get ALL Reactions
-router.route("/api/thoughts/:thoughtId/").get(getAllReactions);
+router.route("/:thoughtId/").get(getAllReactions);
 
 // Create NEW Reaction
 // router.route("/api/thoughts/:thoughtId/reactions")
@@ -35,9 +35,10 @@ router.route("/api/thoughts/:thoughtId/").get(getAllReactions);
 
 router.post("/:thoughtId/reactions", createNewReaction);
 
+
 // Get/Delete Single Reaction
 router
-  .route("/api/thoughts/:thoughtId/reactions/:reactionId")
+  .route("/:thoughtId/reactions/:reactionId")
   .get(getSingleReaction)
   .delete(deleteExistingReaction);
 
