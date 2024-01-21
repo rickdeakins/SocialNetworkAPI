@@ -13,8 +13,7 @@ const {
 
 //Thoughts
 //GET all Thoughts
-router
-  .route(getAllThoughts);
+router.route(getAllThoughts);
 
 // Create NEW Thought
 router.route("/").get(getAllThoughts).post(createNewThought);
@@ -26,25 +25,20 @@ router
   .put(editSingleThought)
   .delete(deleteSingleThought);
 
-//Reactions  
+//Reactions
 // Get ALL Reactions
-router
-  .route("/api/thoughts/:thoughtId/")
-  .get(getAllReactions);
+router.route("/api/thoughts/:thoughtId/").get(getAllReactions);
 
 // Create NEW Reaction
 // router.route("/api/thoughts/:thoughtId/reactions")
-//   .post(createNewReaction);  
+//   .post(createNewReaction);
 
-  router.post("/:thoughtId/reactions", createNewReaction);
+router.post("/:thoughtId/reactions", createNewReaction);
 
 // Get/Delete Single Reaction
 router
   .route("/api/thoughts/:thoughtId/reactions/:reactionId")
   .get(getSingleReaction)
   .delete(deleteExistingReaction);
-
-
-
 
 module.exports = router;

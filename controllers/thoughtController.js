@@ -85,9 +85,9 @@ module.exports = {
   // Get a single reaction
   async getSingleReaction(req, res) {
     try {
-      const reaction = await Reaction.findOne({
-        _id: req.params.reactionId,
-      }).populate("Reactions");
+      const reaction = await Thought.findOne({
+        _id: req.params.thoughtId,
+      }).populate("reactions");
       if (!reaction) {
         return res.status(404).json({ message: "No thought with that ID" });
       }
@@ -101,8 +101,11 @@ module.exports = {
   // async createNewReaction(req, res) {
   //   try {
   //     // const reaction = await Reaction.create(req.body);
-  // const newReaction = await Thought.
-  //     res.json(reaction);
+  // const newReaction = await Thought.findById(req.params.thoughtId);
+  // if (!Thought) {
+  //   return res.status(404).json({ message: 'Thought not found' });
+  // }
+  //     res.json(newReaction);
   //   } catch (err) {
   //     console.log(err);
   //     return res.status(500).json(err);
@@ -111,19 +114,33 @@ module.exports = {
 
   async createNewReaction(req, res) {
     try {
-      const newReaction = await Thought.findOneAndUpdate(
-        { _id: req.params.thoughtId },
-        { $addToSet: { reactions: req.body } },
-        { runValidators: true, new: true }
-      );
-  res.json(newReaction);
-} catch (err) {
-  console.log(err);
-  return res.status(500).json(err);
-}
-},
+      const { reactionBody, userName } = req.body;
 
-  // Delete a thought
+      // Find the Thought document by ID
+      const thought = await Thought.findById(req.params.thoughtId);
+
+      // Check if the thought exists
+      if (!thought) {
+        return res.status(404).json({ message: "Thought not found" });
+      }
+
+      // Create a new Reaction document
+      const newReaction = await Reaction.create({ reactionBody, userName });
+
+      // Update the reactions field in the Thought document
+      thought.reactions.push(newReaction);
+
+      // Save the updated Thought document
+      const updatedThought = await thought.save();
+
+      res.json(updatedThought);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
+  },
+
+  // Delete a reaction
   async deleteExistingReaction(req, res) {
     try {
       const reaction = await Reaction.findOneAndDelete({
@@ -132,7 +149,6 @@ module.exports = {
       if (!reaction) {
         return res.status(404).json({ message: "No reaction with that ID" });
       }
-      await reaction.deleteMany({ _id: { $in: reaction.Users } });
       res.json({ message: "Reaction deleted!" });
     } catch (err) {
       res.status(500).json(err);
