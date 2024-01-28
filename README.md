@@ -54,10 +54,12 @@ In order to complete the steps below, the actions require the user to follow the
 Below are some screenshots illustrating the process of connecting to the server and completing necessary requests.
 
 Connecting to the server:
+
 <img width="799" alt="Screen Shot 2024-01-28 at 1 06 23 AM" src="https://github.com/rickdeakins/SocialNetworkAPI/assets/141289243/22cccfdf-d243-4d38-90ac-840687657e9e">
 <img width="799" alt="Screen Shot 2024-01-28 at 1 08 11 AM" src="https://github.com/rickdeakins/SocialNetworkAPI/assets/141289243/8c4bc5bf-34a1-45de-9116-d8d9b3eccddc">
 
 Performing Various Requests:
+
 <img width="1023" alt="Screen Shot 2024-01-28 at 1 15 18 AM" src="https://github.com/rickdeakins/SocialNetworkAPI/assets/141289243/75e98ae0-ea4f-43ca-8228-eb0f3c82596a">
 <img width="1023" alt="Screen Shot 2024-01-28 at 1 13 46 AM" src="https://github.com/rickdeakins/SocialNetworkAPI/assets/141289243/49704d39-623d-4146-8f50-d827e1700655">
 <img width="1023" alt="Screen Shot 2024-01-28 at 1 12 41 AM" src="https://github.com/rickdeakins/SocialNetworkAPI/assets/141289243/f39edfda-2b75-415b-aa2f-7d7e928af0b8">
