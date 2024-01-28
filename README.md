@@ -33,23 +33,23 @@ SO THAT I can successfully view all records, add new records, update existing re
 In order to complete the steps below, the actions require the user to follow the endpoints specific to each request via the code. This data is housed  The structure for the endpoints will start with ./api/users or ./api/thoughts.
 
 - Functionality for each category is listed below: 
-  - Users:
-    -   GET all users
-    -   GET an indvidual user
-    -   POST a new user
-    -   PUT an existing user
-    -   DELETE an existing user
-  - Thoughts:
-    -   GET all thouhghts
-    -   GET an indvidual thought
-    -   POST a new thought
-    -   PUT an existing thought
-    -   DELETE an existing thought
-   - Reactions:       
-    -   GET an indvidual reaction
-    -   POST a new reaction
-    -   PUT an existing reaction
-    -   DELETE an existing reaction
+- Users:
+  -   GET all users
+  -   GET an indvidual user
+  -   POST a new user
+  -   PUT an existing user
+  -   DELETE an existing user
+- Thoughts:
+  -   GET all thouhghts
+  -   GET an indvidual thought
+  -   POST a new thought
+  -   PUT an existing thought
+  -   DELETE an existing thought
+- Reactions:       
+  -   GET an indvidual reaction
+  -   POST a new reaction
+  -   PUT an existing reaction
+  -   DELETE an existing reaction
 
 Below are some screenshots illustrating the process of connecting to the server and completing necessary requests.
 
