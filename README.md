@@ -45,7 +45,7 @@ In order to complete the steps below, the actions require the user to follow the
     -   POST a new thought
     -   PUT an existing thought
       -   DELETE an existing thought
-  Reactions:       
+ -  Reactions:       
     -   GET an indvidual reaction
     -   POST a new reaction
     -   PUT an existing reaction
